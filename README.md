@@ -2,7 +2,7 @@
 
 This project is a simple Angular application demonstrating a login page with form validation, success state handling, and a clean UI.
 
-> Live Demo --->  kiar-x-login-page.vercel.app
+🌐 **Live Application:** [KiarX-Login-Page](https://kiar-x-login-page.vercel.app/)
 
 ## Login Logic
 
