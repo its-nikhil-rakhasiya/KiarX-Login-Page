@@ -1,0 +1,59 @@
+<div class="login-container">
+    <div class="login-card">
+        <div *ngIf="!isLoggedIn">
+            <div class="login-header">
+                <h2>Welcome KiarX Login Page</h2>
+            </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" formControlName="email" placeholder="name@company.com"
+                            [class.error]="f['email'].touched && f['email'].invalid">
+                    </div>
+                    <div *ngIf="f['email'].touched && f['email'].errors" class="error-msg">
+                        <span *ngIf="f['email'].errors['required']">Email is required</span>
+                        <span *ngIf="f['email'].errors['email']">Please enter a valid email</span>
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" formControlName="password" placeholder="••••••••"
+                            [class.error]="f['password'].touched && f['password'].invalid">
+                    </div>
+                    <div *ngIf="f['password'].touched && f['password'].errors" class="error-msg">
+                        <span *ngIf="f['password'].errors['required']">Password is required</span>
+                        <span *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</span>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <!-- Added margin-top to separate from inputs since links are gone -->
+                <button type="submit" [disabled]="loginForm.invalid || isSubmitting" class="submit-btn"
+                    style="margin-top: 1rem;">
+                    <span *ngIf="!isSubmitting">Sign In</span>
+                    <span *ngIf="isSubmitting" class="loader">Loading...</span>
+                </button>
+
+            </form>
+        </div>
+
+        <div *ngIf="isLoggedIn" class="success-container">
+            <div class="success-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                    <path fill-rule="evenodd"
+                        d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h2>Login Successfully</h2>
+            <button (click)="logout()" class="submit-btn logout-btn">Logout</button>
+        </div>
+    </div>
+</div>
